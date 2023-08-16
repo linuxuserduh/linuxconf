@@ -1,4 +1,4 @@
-![359555105_273383095387873_8819782588813883754_n](https://github.com/linuxuserduh/archconfig/assets/115456907/e4e67278-ebde-46bc-9dd1-0afe67b8e841)![359555105_273383095387873_8819782588813883754_n](https://github.com/linuxuserduh/archconfig/assets/115456907/8d4351dc-dda7-47c7-8b94-f95f5558baa2)# archconfig
+# archconfig
 Ye u can copy my setup
 
 
