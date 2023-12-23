@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y xfce4 tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- wget gnupg lsb-release apt-transport-https ca-certificates
+sudo apt install -y xfce4 xfce4-terminal tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- wget gnupg lsb-release apt-transport-https ca-certificates
 
 # dotnet-sdk
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
