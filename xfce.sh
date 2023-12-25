@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -y
+<<<<<<< HEAD
 sudo apt install -y xfce4 xfce4-terminal xfce4-power-manager tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- mpv yt-dlp- xdg-utils
 
 # network manager
@@ -8,6 +9,13 @@ sudo apt install network-manager modemmanager- xfce4-wavelan-plugin
 # image viewer
 sudo apt install --no-install-recommends -y feh
 
+=======
+sudo apt install -y xfce4 xfce4-terminal xfce4-battery-plugin xfce4-wavelan-plugin tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- mpv yt-dlp-
+
+# image viewer
+sudo apt install --no-install-recommends -y feh
+
+>>>>>>> b023b90 (updated packages)
 # firewall
 sudo apt install -y ufw
 sudo ufw default deny incoming && sudo ufw default allow outgoing
@@ -27,6 +35,15 @@ Signed-By: /usr/share/keyrings/librewolf.gpg
 EOF
 sudo apt update
 sudo apt install librewolf -y
+<<<<<<< HEAD
+=======
+
+# dotnet-sdk
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+sudo apt update && sudo apt install dotnet-sdk-7.0
+>>>>>>> b023b90 (updated packages)
 
 # dotnet-sdk
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -34,5 +51,8 @@ sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 sudo apt update && sudo apt install dotnet-sdk-7.0
 
+<<<<<<< HEAD
 # network config
 sudo vim /etc/network/interfaces
+=======
+>>>>>>> b023b90 (updated packages)
