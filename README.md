@@ -1,2 +1,1 @@
-# Default
-includes code, librewolf, dotnet-sdk 7
+These are my scripted installations for each distros.
