@@ -1,19 +1,20 @@
 #!/bin/bash
-
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y xfce4 xfce4-terminal tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- wget gnupg lsb-release apt-transport-https ca-certificates
+sudo apt install -y xfce4 xfce4-terminal xfce4-battery-plugin tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- mpv yt-dlp-
 
-# dotnet-sdk
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
+# network manager
+sudo apt install network-manager modemmanager- xfce4-wavelan-plugin
 
-# vscode
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+# image viewer
+sudo apt install --no-install-recommends -y feh
+
+# firewall
+sudo apt install -y ufw
+sudo ufw default deny incoming && sudo ufw default allow outgoing
+sudo ufw enable
 
 # librewolf debian 11-12
+sudo apt install -y wget gnupg lsb-release apt-transport-https ca-certificates
 distro=$(if echo " una bookworm vanessa focal jammy bullseye vera uma " | grep -q " $(lsb_release -sc) "; then lsb_release -sc; else echo focal; fi)
 wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
 sudo tee /etc/apt/sources.list.d/librewolf.sources << EOF > /dev/null
@@ -24,7 +25,14 @@ Components: main
 Architectures: amd64
 Signed-By: /usr/share/keyrings/librewolf.gpg
 EOF
+sudo apt update
+sudo apt install librewolf -y
 
+# dotnet-sdk
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+sudo apt update && sudo apt install dotnet-sdk-7.0
 
-# install packages
-sudo apt install -y dotnet-sdk-7.0 code librewolf
+# network config
+sudo vim /etc/network/interfaces
