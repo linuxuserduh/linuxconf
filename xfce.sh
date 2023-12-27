@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y xfce4 xfce4-terminal xfce4-power-manager tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- mpv yt-dlp-
+sudo apt install -y xfce4 xfce4-terminal xfce4-power-manager tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- mpv yt-dlp- xdg-utils
 
 # network manager
 sudo apt install network-manager modemmanager- xfce4-wavelan-plugin
