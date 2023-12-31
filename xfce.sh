@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -y
 <<<<<<< HEAD
+<<<<<<< HEAD
 sudo apt install -y xfce4 xfce4-terminal xfce4-power-manager tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse vim htop tlp tlp-rdw- mpv yt-dlp- xdg-utils
 
 # network manager
@@ -56,3 +57,6 @@ sudo apt update && sudo apt install dotnet-sdk-7.0
 sudo vim /etc/network/interfaces
 =======
 >>>>>>> b023b90 (updated packages)
+=======
+sudo apt install -y xfce4 xfce4-terminal xfce4-power-manager xfce4-wavelan-plugin network-manager modemmanager- tango-icon-theme- pulseaudio- pipewire wireplumber pipewire-pulse
+>>>>>>> 7bb738d (separated xfce minimal installation and my general installations)
