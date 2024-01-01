@@ -1,6 +1,6 @@
 #!/bin/bash
 # recommended installations
-sudo apt install -y vim htop tlp tlp-rdw- ufw mpv yt-dlp- xdg-utils
+sudo apt install -y vim htop tlp tlp-rdw- ethtool- ufw mpv yt-dlp- xdg-utils
 
 # image viewer
 sudo apt install --no-install-recommends -y feh
