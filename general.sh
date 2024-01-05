@@ -33,3 +33,8 @@ wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 sudo apt update && sudo apt install -y dotnet-sdk-6.0
+
+# vscode (thanks to TheOdinProject for scripted installation)
+wget -O code-latest.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+sudo apt install ./code-latest.deb
+rm code-latest.deb
