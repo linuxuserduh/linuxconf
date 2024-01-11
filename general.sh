@@ -1,16 +1,16 @@
 #!/bin/bash
 # recommended installations
-sudo apt install -y vim htop tlp tlp-rdw- ethtool- ufw mpv yt-dlp- xdg-utils
+sudo apt install -y vim htop tlp tlp-rdw- ethtool- ufw mpv yt-dlp- xdg-utils ssh
 
 # image viewer
 sudo apt install --no-install-recommends -y feh
 
 # fonts
-sudo apt install fonts-wqy-zenhei
-# fonts-ibm-plex
+sudo apt install fonts-wqy-zenhei # fonts-ibm-plex
 
 # firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing
+sudo ufw limit ssh
 sudo ufw enable
 
 # librewolf debian 11-12
@@ -28,11 +28,11 @@ EOF
 sudo apt update
 sudo apt install librewolf -y
 
-# dotnet-sdk 6.0
+# dotnet-sdk 
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
-sudo apt update && sudo apt install -y dotnet-sdk-6.0
+sudo apt update && sudo apt install -y dotnet-sdk-8.0
 
 # vscode (thanks to TheOdinProject for scripted installation)
 wget -O code-latest.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
