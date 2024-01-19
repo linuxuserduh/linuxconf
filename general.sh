@@ -1,6 +1,6 @@
 #!/bin/bash
 # recommended installations
-sudo apt install -y vim htop tlp tlp-rdw- ethtool- ufw mpv yt-dlp- xdg-utils ssh
+sudo apt install -y vim htop tlp tlp-rdw- ethtool- ufw mpv yt-dlp- xdg-utils ssh curl
 
 # image viewer
 sudo apt install --no-install-recommends -y feh
@@ -34,7 +34,8 @@ sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 sudo apt update && sudo apt install -y dotnet-sdk-8.0
 
-# vscode (thanks to TheOdinProject for scripted installation)
-wget -O code-latest.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
-sudo apt install -y ./code-latest.deb
-rm code-latest.deb
+# vscode
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt install -y code
