@@ -1,6 +1,6 @@
 #!/bin/bash
 # recommended installations
-sudo apt install -y vim htop ufw mpv yt-dlp- xdg-utils ssh curl ffmpeg vainfo smartmontools zip unzip
+sudo apt install -y htop ufw mpv yt-dlp- xdg-utils ssh curl ffmpeg vainfo smartmontools zip unzip
 
 # image viewer
 sudo apt install --no-install-recommends -y feh
@@ -54,7 +54,7 @@ sudo apt update && sudo apt install -y code
 rm microsoft.gpg
 
 # libreoffice-lts & ms fonts
-sudo apt install -y libreoffice
+sudo apt install -y libreoffice libreoffice-gtk3 openjdk-17-jre- cabextract
 wget https://archive.org/download/PowerPointViewer_201801/PowerPointViewer.exe
 cabextract PowerPointViewer.exe -F ppviewer.cab
 mkdir -p ~/.fonts/ppviewer/
