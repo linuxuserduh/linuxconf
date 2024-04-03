@@ -1,6 +1,8 @@
 #!/bin/bash
-# Laptop recommended installations
-sudo apt install -y thermald wireless-tools acpi-support cpufrequtils acpi wpasupplicant powertop acpid apmd pcmciautils pm-utils anacron avahi-autoipd
+sudo apt install task-laptop bluetooth-
+
+# for intel
+sudo apt install -y thermald tlp tlp-rdw-
 
 # XFCE
 sudo apt install -y xfce4-wavelan-plugin
