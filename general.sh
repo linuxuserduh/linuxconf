@@ -1,6 +1,6 @@
 #!/bin/bash
 # recommended installations
-sudo apt install -y htop ufw mpv yt-dlp- xdg-utils ssh curl ffmpeg vainfo smartmontools zip unzip
+sudo apt install -y htop ufw mpv yt-dlp- xdg-utils ssh curl smartmontools zip unzip
 
 # image viewer
 sudo apt install --no-install-recommends -y feh
@@ -31,8 +31,9 @@ sudo apt install librewolf -y
 # lutris
 echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
 wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/keyrings/lutris.gpg > /dev/null
+sudo dpkg --add-architecture i386
 sudo apt update
-sudo apt install -y lutris pulseaudio-
+sudo apt install -y lutris pulseaudio- fluidsynth-
 
 # dotnet-sdk 
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb

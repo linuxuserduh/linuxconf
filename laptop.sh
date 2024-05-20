@@ -5,4 +5,4 @@ sudo apt install task-laptop bluetooth-
 sudo apt install -y thermald tlp tlp-rdw-
 
 # XFCE
-sudo apt install -y xfce4-wavelan-plugin
+sudo apt install -y xfce4-wavelan-plugin xfce4-power-manager
