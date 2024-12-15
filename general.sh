@@ -13,20 +13,10 @@ sudo ufw default deny incoming && sudo ufw default allow outgoing
 sudo ufw limit ssh
 sudo ufw enable
 
-# librewolf debian 11+
-sudo apt install -y wget gnupg lsb-release apt-transport-https ca-certificates
-distro=$(if echo " una bookworm vanessa focal jammy bullseye vera uma " | grep -q " $(lsb_release -sc) "; then lsb_release -sc; else echo focal; fi)
-wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
-sudo tee /etc/apt/sources.list.d/librewolf.sources << EOF > /dev/null
-Types: deb
-URIs: https://deb.librewolf.net
-Suites: $distro
-Components: main
-Architectures: amd64
-Signed-By: /usr/share/keyrings/librewolf.gpg
-EOF
-sudo apt update
-sudo apt install librewolf -y
+# librewolf
+sudo apt update && sudo apt install extrepo -y
+sudo extrepo enable librewolf
+sudo apt --allow-releaseinfo-change update
 
 # lutris
 echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
@@ -34,18 +24,6 @@ wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install -y lutris pulseaudio- fluidsynth-
-
-# dotnet-sdk 
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-sudo apt update && sudo apt install -y dotnet-sdk-8.0
-
-# mono
-sudo apt install dirmngr ca-certificates gnupg
-sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/debian stable-buster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-sudo apt update && sudo apt install -y mono-devel
 
 # vscode
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
