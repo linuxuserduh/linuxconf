@@ -1,3 +1,4 @@
 # Available scripts
-- XFCE
+- XFCE (Favored)
 - KDE
+- DWM

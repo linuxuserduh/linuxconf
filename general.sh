@@ -1,9 +1,12 @@
 #!/bin/bash
 # recommended installations
-sudo apt install -y htop ufw mpv yt-dlp- xdg-utils ssh curl smartmontools zip unzip
+sudo apt install -y htop ufw mpv ffmpeg yt-dlp- xdg-utils ssh smartmontools zip unzip bluez-
 
 # image viewer
 sudo apt install --no-install-recommends -y feh
+
+# image editor
+sudo apt install --no-install-recommends -y gimp
 
 # fonts
 sudo apt install fonts-wqy-zenhei
@@ -17,6 +20,7 @@ sudo ufw enable
 sudo apt update && sudo apt install extrepo -y
 sudo extrepo enable librewolf
 sudo apt --allow-releaseinfo-change update
+sudo apt install librewolf -y
 
 # lutris
 echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
@@ -26,6 +30,7 @@ sudo apt update
 sudo apt install -y lutris pulseaudio- fluidsynth-
 
 # vscode
+sudo apt install -y curl
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
