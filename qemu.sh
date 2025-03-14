@@ -1,19 +1,16 @@
 #!/bin/bash
 # Do this after installation first
 
-sudo apt install -y qemu-system libvirt-daemon-system virt-manager bridge-utils 
+sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
 
-# Add bridge network interface
+# add user to group
+sudo adduser $USER libvirt
 
-sudo echo "
-# VM Bridge Interface
-auto br0
-iface br0 inet dhcp
-   pre-up ip tuntap add dev tap0 mode tap user <username>
-   pre-up ip link set tap0 up
-   bridge_ports all tap0
-   bridge_stp off
-   bridge_maxwait 0
-   bridge_fd      0
-   post-down ip link set tap0 down
-   post-down ip tuntap del dev tap0 mode tap" | sudo tee -a /etc/network/interface > /dev/null
+# autostart guest network
+sudo virsh net-autostart default
+
+# Install VirtIO drivers for win10
+wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+
+# virtio for win7
+#wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.173-4/virtio-win-0.1.173.iso
