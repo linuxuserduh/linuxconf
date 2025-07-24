@@ -1,15 +1,23 @@
 #!/bin/bash
-# recommended installations
-sudo apt install -y htop ufw mpv ffmpeg yt-dlp- xdg-utils ssh smartmontools zip unzip qbittorrent
+# needed contrib for relevant packages like MS fonts and steam
+sudo vim /etc/apt/sources.list
+sudo apt update
 
-# image viewer
-sudo apt install --no-install-recommends -y feh
+# basic necessities
+sudo apt install -y htop ufw mpv ffmpeg yt-dlp- ssh smartmontools preload qbittorrent #tlp # if using a laptop
 
-# image editor
-sudo apt install --no-install-recommends -y gimp
+# image viewer & editor
+sudo apt install --no-install-recommends -y feh gimp
 
 # fonts
-sudo apt install fonts-wqy-zenhei
+sudo apt install -y fonts-wqy-zenhei fonts-ibm-plex ttf-mscorefonts-installer cabextract
+wget https://archive.org/download/PowerPointViewer_201801/PowerPointViewer.exe
+cabextract PowerPointViewer.exe -F ppviewer.cab
+mkdir -p ~/.fonts/ppviewer/
+cabextract ppviewer.cab -F '*.TTC' -d ~/.fonts/ppviewer/
+cabextract ppviewer.cab -F '*.TTF' -d ~/.fonts/ppviewer/
+fc-cache
+rm PowerPointViewer.exe ppviewer.cab
 
 # firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing
@@ -22,13 +30,6 @@ sudo extrepo enable librewolf
 sudo apt --allow-releaseinfo-change update
 sudo apt install librewolf -y
 
-# lutris
-echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
-wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/keyrings/lutris.gpg > /dev/null
-sudo dpkg --add-architecture i386
-sudo apt update
-sudo apt install -y lutris wine64 wine32 pulseaudio- fluidsynth- gamemode-
-
 # vscode
 sudo apt install -y curl
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -37,12 +38,30 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/micr
 sudo apt update && sudo apt install -y code
 rm microsoft.gpg
 
-# libreoffice-lts & ms fonts
-# sudo apt install -y libreoffice libreoffice-gtk3 openjdk-17-jre- cabextract
-wget https://archive.org/download/PowerPointViewer_201801/PowerPointViewer.exe
-cabextract PowerPointViewer.exe -F ppviewer.cab
-mkdir -p ~/.fonts/ppviewer/
-cabextract ppviewer.cab -F '*.TTC' -d ~/.fonts/ppviewer/
-cabextract ppviewer.cab -F '*.TTF' -d ~/.fonts/ppviewer/
-fc-cache
-rm PowerPointViewer.exe ppviewer.cab
+# xanmod kernel
+wget -qO - https://dl.xanmod.org/archive.key | sudo gpg --dearmor -vo /etc/apt/keyrings/xanmod-archive-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-release.list
+sudo apt update && sudo apt install -y linux-xanmod-x64v3 #linux-xanmod-lts-x64v2 # for my old intel
+
+# clean unnecessary packages if installed via standard install, not netinst cd
+sudo apt purge --autoremove -y debian-refence-common im-config ibus mlterm-common #cups # in case I have a compatible printer
+
+
+# optional stuff
+# libreoffice
+# sudo apt install -y libreoffice libreoffice-gtk3 openjdk-17-jre-
+
+# qemu
+# sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
+
+# # add user to group
+# sudo adduser $USER libvirt
+
+# # autostart guest network
+# sudo virsh net-autostart default
+
+# # Install VirtIO drivers for win10 and later
+# wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+
+# virtio for win7
+# wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.173-4/virtio-win-0.1.173.iso
