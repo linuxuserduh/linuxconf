@@ -1,2 +1,8 @@
 #!/bin/bash
-sudo apt install -y xfce4 xfce4-terminal xfce4-screenshooter xfce4-power-manager xfce4-windowck-plugin thunar-archive-plugin gvfs-backends network-manager modemmanager- tango-icon-theme- pulseaudio- bluez- pipewire wireplumber pipewire-pulse gnome-disk-utility #xfce4-power-manager-plugins # useful for laptop
+sudo apt install -y xfce4 xfce4-terminal xfce4-screenshooter xfce4-power-manager thunar-archive-plugin gvfs-backends network-manager network-manager-gnome gnome-icon-theme- mobile-broadband-provider-info- modemmanager- tango-icon-theme- pulseaudio- bluez- pipewire gnome-disk-utility #xfce4-power-manager-plugins # useful for laptop
+
+# for event sounds
+sudo apt install -y libcanberra-gtk-module libcanberra-pulse pipewire-alsa
+
+sudo echo -e '#Enable event sounds
+export GTK_modules="canberra-gtk-module"' >> ~/.xsessionrc

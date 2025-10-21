@@ -1,6 +1,9 @@
 #!/bin/bash
 sudo apt update
-sudo apt install -y linux-cpupower cpufrequtils
+sudo apt install -y cpufrequtils
+
+# Set governor to schedutil when boot
+sudo echo 'GOVERNOR="schedutil"' | sudo tee /etc/default/cpufrequtils > /dev/null
 
 # Ryzen Master alternative for my 2200G
 cd ..
@@ -15,8 +18,17 @@ make
 sudo ln -s ryzenadj /usr/local/bin/ryzenadj
 
 # do a lil' configuration if necessary
-sudo echo -e '#!/bin/bash\nryzenadj -a 35000 -b 48000 -c 35000 -f 75 -g 45000 -k 65000' | sudo tee -a /usr/local/sbin/ryzenadj.sh > /dev/null
+echo -e '#!/bin/bash
+ryzenadj -a 35000 -b 48000 -c 35000 -f 80 -g 45000 -k 65000' | sudo tee /usr/local/sbin/ryzenadj.sh > /dev/null
 
 sudo chmod 0700 /usr/local/sbin/ryzenadj.sh
+
+echo -e '[Unit]
+Description=Adjust Ryzen's TDP at its desired values
+[Service]
+ExecStart=/usr/local/sbin/ryzenadj.sh
+[Install]
+WantedBy=multi-user.target' | sudo tee /etc/systemd/system/ryzenadj.service > /dev/null
+
 sudo systemctl enable ryzenadj.service
 sudo systemctl start ryzenadj.service

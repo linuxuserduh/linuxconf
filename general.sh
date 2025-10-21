@@ -1,30 +1,32 @@
 #!/bin/bash
-# needed contrib for relevant packages like MS fonts and steam
+# needed contrib for relevant packages like cabextract for MS fonts and steam
 sudo vim /etc/apt/sources.list
 sudo apt update
 
 # basic necessities
-sudo apt install -y htop ufw mpv ffmpeg yt-dlp- ssh smartmontools preload qbittorrent #tlp # if using a laptop
+sudo apt install -y htop ufw mpv ffmpeg yt-dlp- ssh smartmontools nohang preload qbittorrent #tlp # if using a laptop
 
 # image viewer & editor
 sudo apt install --no-install-recommends -y feh gimp
 
 # fonts
-sudo apt install -y fonts-wqy-zenhei fonts-ibm-plex ttf-mscorefonts-installer cabextract
+sudo apt install -y fonts-wqy-zenhei ttf-mscorefonts-installer cabextract
 wget https://archive.org/download/PowerPointViewer_201801/PowerPointViewer.exe
+wget https://archive.org/download/ftp.microsoft.com/ftp.microsoft.com.zip/ftp.microsoft.com/Softlib/MSLFILES/TAHOMA32.EXE
 cabextract PowerPointViewer.exe -F ppviewer.cab
 mkdir -p ~/.fonts/ppviewer/
 cabextract ppviewer.cab -F '*.TTC' -d ~/.fonts/ppviewer/
 cabextract ppviewer.cab -F '*.TTF' -d ~/.fonts/ppviewer/
+cabextract TAHOMA32.EXE -F '*.TTF' -d ~/.fonts/
 fc-cache
-rm PowerPointViewer.exe ppviewer.cab
+rm PowerPointViewer.exe ppviewer.cab TAHOMA.exe
 
 # firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing
 sudo ufw limit ssh
 sudo ufw enable
 
-# librewolf
+# librewolf browser
 sudo apt update && sudo apt install extrepo -y
 sudo extrepo enable librewolf
 sudo apt --allow-releaseinfo-change update
@@ -40,28 +42,8 @@ rm microsoft.gpg
 
 # xanmod kernel
 wget -qO - https://dl.xanmod.org/archive.key | sudo gpg --dearmor -vo /etc/apt/keyrings/xanmod-archive-keyring.gpg
-echo 'deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-release.list
+echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/xanmod-release.list
 sudo apt update && sudo apt install -y linux-xanmod-x64v3 #linux-xanmod-lts-x64v2 # for my old intel
 
-# clean unnecessary packages if installed via standard install, not netinst cd
-sudo apt purge --autoremove -y debian-refence-common im-config ibus mlterm-common #cups # in case I have a compatible printer
-
-
-# optional stuff
-# libreoffice
-# sudo apt install -y libreoffice libreoffice-gtk3 openjdk-17-jre-
-
-# qemu
-# sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
-
-# # add user to group
-# sudo adduser $USER libvirt
-
-# # autostart guest network
-# sudo virsh net-autostart default
-
-# # Install VirtIO drivers for win10 and later
-# wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
-
-# virtio for win7
-# wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.173-4/virtio-win-0.1.173.iso
+# remove unnecessary packages if installed via standard install iso
+sudo apt purge --autoremove -y debian-reference-common im-config ibus mlterm-common #cups # in case I have a compatible printer

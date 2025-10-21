@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+# For post-installation
 # Enable GuC / HuC firmware loading
 sudo echo 'options i915 enable_guc=2' | sudo tee -a /etc/modprobe.d/i915.conf > /dev/null
 sudo update-initramfs -u -k $(uname -r)

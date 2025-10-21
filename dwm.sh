@@ -16,7 +16,7 @@ dwmSources () {
 dwmSources
 
 # add backlight rules for fn keys to work
-sudo echo 'ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video $sys$devpath/brightness", RUN+="/bin/chmod g+w $sys$devpath/brightness"' | sudo tee -a /etc/udev/rules.d/backlight.rules > /dev/null
+echo 'ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video $sys$devpath/brightness", RUN+="/bin/chmod g+w $sys$devpath/brightness"' | sudo tee -a /etc/udev/rules.d/backlight.rules > /dev/null
 
 # .xinitrc
 echo -e '#!/bin/sh \n\nslstatus & \nexec dwm' > ~/.xinitrc
