@@ -1,13 +1,13 @@
 #!/bin/bash
 # lutris
- echo -e "Types: deb\nURIs: https://download.opensuse.org/repositories/home:/strycore/Debian_12/\nSuites: ./\nComponents: \nSigned-By: /etc/apt/keyrings/lutris.gpg" | sudo tee /etc/apt/sources.list.d/lutris.sources > /dev/null
+echo -e "Types: deb\nURIs: https://download.opensuse.org/repositories/home:/strycore/Debian_12/\nSuites: ./\nComponents: \nSigned-By: /etc/apt/keyrings/lutris.gpg" | sudo tee /etc/apt/sources.list.d/lutris.sources > /dev/null
 wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/lutris.gpg
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install -y lutris wine64 wine32 pulseaudio- fluidsynth- gamescope-
 
 # allow gamemode renice limitation to 4
-echo -e '@gamemode - nice -4' | sudo tee /etc/security/limits.d/10-gamemode.conf > /dev/null
+echo '@gamemode - nice -4' | sudo tee /etc/security/limits.d/10-gamemode.conf > /dev/null
 
 # steam
 sudo apt install -y steam-installer

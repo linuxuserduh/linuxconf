@@ -9,7 +9,7 @@ sudo apt install -y htop ufw mpv ffmpeg yt-dlp- ssh smartmontools nohang preload
 # image viewer & editor
 sudo apt install --no-install-recommends -y feh gimp
 
-# fonts
+# fonts (required for certain websites on a browser)
 sudo apt install -y fonts-wqy-zenhei ttf-mscorefonts-installer cabextract
 wget https://archive.org/download/PowerPointViewer_201801/PowerPointViewer.exe
 wget https://archive.org/download/ftp.microsoft.com/ftp.microsoft.com.zip/ftp.microsoft.com/Softlib/MSLFILES/TAHOMA32.EXE
@@ -19,7 +19,7 @@ cabextract ppviewer.cab -F '*.TTC' -d ~/.fonts/ppviewer/
 cabextract ppviewer.cab -F '*.TTF' -d ~/.fonts/ppviewer/
 cabextract TAHOMA32.EXE -F '*.TTF' -d ~/.fonts/
 fc-cache
-rm PowerPointViewer.exe ppviewer.cab TAHOMA.exe
+rm PowerPointViewer.exe ppviewer.cab TAHOMA32.exe
 
 # firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing
@@ -35,8 +35,8 @@ sudo apt install librewolf -y
 # vscode
 sudo apt install -y curl
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/keyrings/microsoft-archive-keyring.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo apt update && sudo apt install -y code
 rm microsoft.gpg
 
