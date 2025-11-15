@@ -3,11 +3,11 @@
 sudo vim /etc/apt/sources.list
 sudo apt update
 
-# basic necessities
-sudo apt install -y htop ufw mpv ffmpeg yt-dlp- ssh smartmontools nohang preload qbittorrent #tlp # if using a laptop
+# necessities
+sudo apt install -y htop ufw mpv ffmpeg yt-dlp- ssh smartmontools nohang qbittorrent preload #tlp # if using a laptop
 
 # image viewer & editor
-sudo apt install --no-install-recommends -y feh gimp
+sudo apt install -y --no-install-recommends feh gimp
 
 # fonts (required for certain websites on a browser)
 sudo apt install -y fonts-wqy-zenhei ttf-mscorefonts-installer cabextract
@@ -19,7 +19,7 @@ cabextract ppviewer.cab -F '*.TTC' -d ~/.fonts/ppviewer/
 cabextract ppviewer.cab -F '*.TTF' -d ~/.fonts/ppviewer/
 cabextract TAHOMA32.EXE -F '*.TTF' -d ~/.fonts/
 fc-cache
-rm PowerPointViewer.exe ppviewer.cab TAHOMA32.exe
+rm PowerPointViewer.exe ppviewer.cab TAHOMA32.EXE
 
 # firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing

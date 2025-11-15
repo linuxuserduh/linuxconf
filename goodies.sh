@@ -3,8 +3,17 @@
 # for dual boot
 sudo apt install -y grub-customizer
 
-# libreoffice
-sudo apt install -y libreoffice libreoffice-gtk3 openjdk-17-jre-
+# pdf editor
+sudo apt install -y --no-install-recommends okular
+
+# libreoffice (msoffice)
+sudo apt install -y --no-install-recommends libreoffice libreoffice-gtk3 
+
+# video editor
+sudo apt install -y --no-install-recommends kdenlive 
+
+# audio editor
+sudo apt install -y audacity
 
 # qemu
 sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
