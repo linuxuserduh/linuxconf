@@ -1,14 +1,9 @@
 #!/bin/bash
-sudo apt update
-sudo apt install -y cpufrequtils
-
-# Set governor to schedutil when boot
-sudo echo 'GOVERNOR="schedutil"' | sudo tee /etc/default/cpufrequtils > /dev/null
-
 # Ryzen Master alternative for my 2200G
-cd ..
-sudo apt install -y build-essential cmake libpci-dev
+sudo apt update
+sudo apt install -y linux-cpupower build-essential cmake libpci-dev
 
+cd ..
 git clone https://github.com/FlyGoat/RyzenAdj.git
 cd RyzenAdj
 rm -r win32
@@ -17,18 +12,24 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 sudo ln -s ryzenadj /usr/local/bin/ryzenadj
 
-# do a lil' configuration if necessary
+# set custom configs on boot
 echo -e '#!/bin/bash
-ryzenadj -a 35000 -b 48000 -c 35000 -f 80 -g 45000 -k 65000' | sudo tee /usr/local/sbin/ryzenadj.sh > /dev/null
-
-sudo chmod 0700 /usr/local/sbin/ryzenadj.sh
+cpupower frequency-set -g schedutil
+ryzenadj -a 35000 -b 42000 -c 35000 -f 80 -g 30000 -k 50000
+echo 0 | tee /sys/devices/system/cpu/cpufreq/boost' | sudo tee /usr/local/sbin/ryzenconfig.sh > /dev/null
+sudo chmod 0700 /usr/local/sbin/ryzenconfig.sh
 
 echo -e '[Unit]
-Description=Adjust Ryzen's TDP at its desired values
+Description=Custom Ryzen config
 [Service]
-ExecStart=/usr/local/sbin/ryzenadj.sh
+ExecStart=/usr/local/sbin/ryzenconfig.sh
 [Install]
-WantedBy=multi-user.target' | sudo tee /etc/systemd/system/ryzenadj.service > /dev/null
+WantedBy=multi-user.target' | sudo tee /etc/systemd/system/ryzenconfig.service > /dev/null
 
-sudo systemctl enable ryzenadj.service
-sudo systemctl start ryzenadj.service
+sudo systemctl enable ryzenconfig.service
+sudo systemctl start ryzenconfig.service
+
+
+## Intel Q6600 & GeForce 8800 GTX raw performance on Ryzen 3 2200g
+# cpupower frequency-set -u 1600000
+# ryzenadj -a 15000 -b 23000 -c 15000 -f 75 -g 30000 -k 50000

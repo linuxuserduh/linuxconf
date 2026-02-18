@@ -1,31 +1,26 @@
 #!/bin/bash
-# optional softwares
-# for dual boot
-sudo apt install -y grub-customizer
+## for dual boot
+#sudo apt install -y grub-customizer
 
-# pdf editor
-sudo apt install -y --no-install-recommends okular
+## libreoffice
+#sudo apt install -y --no-install-recommends libreoffice libreoffice-gtk3
 
-# libreoffice (msoffice)
-sudo apt install -y --no-install-recommends libreoffice libreoffice-gtk3 
+## pdf editor
+#sudo apt install -y --no-install-recommends okular
 
-# video editor
-sudo apt install -y --no-install-recommends kdenlive 
+## video editor
+#sudo apt install -y --no-install-recommends kdenlive
 
-# audio editor
-sudo apt install -y audacity
+## audio editor
+#sudo apt install -y audacity
 
-# qemu
-sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
+## qemu
+#sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
+#sudo adduser $USER libvirt
+#sudo virsh net-autostart default
 
-# add user to group
-sudo adduser $USER libvirt
+## Install VirtIO drivers for win10 and later
+#wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
 
-# autostart guest network
-sudo virsh net-autostart default
-
-# Install VirtIO drivers for win10 and later
-wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
-
-# virtio for win7
+## virtio for win7
 # wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.173-4/virtio-win-0.1.173.iso
