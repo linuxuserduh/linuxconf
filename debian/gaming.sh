@@ -6,9 +6,6 @@ sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install -y lutris wine64 wine32 pulseaudio- fluidsynth- gamescope-
 
-# allow gamemode renice limitation to 4
-echo '@gamemode - nice -4' | sudo tee /etc/security/limits.d/10-gamemode.conf > /dev/null
-
 # steam
 sudo apt install -y steam-installer
 

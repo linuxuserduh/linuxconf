@@ -14,6 +14,9 @@
 ## audio editor
 #sudo apt install -y audacity
 
+## system restore
+# sudo apt install -y timeshift
+
 ## qemu
 #sudo apt install -y qemu-system-x86 libvirt-daemon-system virt-manager
 #sudo adduser $USER libvirt
