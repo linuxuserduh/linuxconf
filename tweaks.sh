@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # allow renice limitation to 4 (sitting between normal and crucial processes) and add user to group
 echo '@gamemode - nice -4' | sudo tee /etc/security/limits.d/10-gamemode.conf > /dev/null
 sudo usermod -aG gamemode $(whoami)
