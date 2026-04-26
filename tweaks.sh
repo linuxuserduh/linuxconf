@@ -5,7 +5,7 @@ echo -e '# HDD
 ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
 
 # SSD
-ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="bfq"
+ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
 
 # NVMe SSD
 ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"' | sudo tee /etc/udev/rules.d/60-ioschedulers.rules > /dev/null
@@ -13,9 +13,6 @@ ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{qu
 # Sysctl config
 echo -e '# This action will speed up your boot and shutdown, because one less module is loaded. Additionally disabling watchdog timers increases performance and lowers power consumption
 # Disable NMI watchdog
-kernel.nmi_watchdog = 0
+kernel.nmi_watchdog = 0' | sudo tee /etc/sysctl.d/10-nmi-watchdog.conf > /dev/null
 
-# reduce swappiness to use more ram than storage
-vm.swappiness = 10' | sudo tee /etc/sysctl.d/99-custom-settings.conf > /dev/null
-
-sudo sysctl -p /etc/sysctl.d/99-custom-settings.conf
+sudo sysctl -p /etc/sysctl.d/10-nmi-watchdog.conf

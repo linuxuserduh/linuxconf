@@ -5,7 +5,7 @@ git clone https://github.com/FlyGoat/RyzenAdj
 cd RyzenAdj
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 make -C build -j"$(nproc)"
-sudo cp -v build/ryzenadj /usr/local/bin/
+sudo mv -v build/ryzenadj /usr/local/bin/
 cd ../
 
 # ryzen_smu
