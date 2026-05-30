@@ -1,10 +1,10 @@
 #!/bin/bash
 # debloat process (groups then individual pkgs)
 sudo dnf remove @input-methods @guest-desktop-agents @dial-up @desktop-accessibility @printing @multimedia -y
-sudo dnf remove localsearch nano abrt dnfdragora-updater cups system-config-printer-libs xfce4-taskmanager xfce4-datetime-plugin xfce4-places-plugin -y
+sudo dnf remove irqbalance localsearch nano abrt dnfdragora-updater cups system-config-printer-libs nfs-utils xfce4-taskmanager xfce4-datetime-plugin xfce4-places-plugin -y
 
 # comment if using laptop
-sudo dnf remove @networkmanager-submodules blueman bluez-libs -y
+sudo dnf remove @networkmanager-submodules blueman bluez-libs xfce4-screensaver -y
 
 # enable rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
@@ -12,7 +12,7 @@ sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
 # non-free drivers
 sudo dnf install ffmpeg --allowerasing -y
-sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
+sudo dnf install mesa-va-drivers-freeworld -y
 
 # general apps
 sudo dnf install fuse fuse-libs qbittorrent ristretto atril mousepad xarchiver seahorse -y
@@ -32,5 +32,5 @@ sudo dnf install brave-browser -y
 sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
 sudo rpm -ivh --nodigest https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 
-# clean unneededed packages
+# clean unnecessary packages
 sudo dnf autoremove -y

@@ -5,7 +5,7 @@ sudo dnf install code -y
 
 # unity
 sudo sh -c 'echo -e "[unityhub]\nname=Unity Hub\nbaseurl=https://hub.unity3d.com/linux/repos/rpm/stable\nenabled=1\ngpgcheck=1\ngpgkey=https://hub.unity3d.com/linux/repos/rpm/stable/repodata/repomd.xml.key\nrepo_gpgcheck=1" > /etc/yum.repos.d/unityhub.repo'
-echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" | sudo tee -a /etc/environment
+echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" | sudo tee -a /etc/environment > /dev/null
 sudo dnf install unityhub dotnet-sdk-8.0 GConf2 git-lfs -y
 
 # image editor

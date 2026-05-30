@@ -1,6 +1,6 @@
 #!/bin/bash
 # lutris
-sudo dnf install -y lutris vulkan-tools xrandr -x fluid-soundfont-gs
+sudo dnf install -y lutris vulkan-tools xrandr -x fluid-soundfont-gs,gamescope
 
 # steam
 sudo dnf install steam -y
@@ -16,3 +16,7 @@ echo -e '<driconf>
        </application>
    </device>
 </driconf>' > ~/.drirc
+
+
+# Increase AMD's shader cache size
+echo 'MESA_SHADER_CACHE_MAX_SIZE=4G' | sudo tee -a /etc/environment > /dev/null
