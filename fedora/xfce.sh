@@ -1,27 +1,31 @@
 #!/bin/bash
 # debloat process (groups then individual pkgs)
-sudo dnf remove @input-methods @guest-desktop-agents @dial-up @desktop-accessibility @printing @multimedia -y
-sudo dnf remove irqbalance localsearch nano abrt dnfdragora-updater cups system-config-printer-libs nfs-utils xfce4-taskmanager xfce4-datetime-plugin xfce4-places-plugin -y
+sudo dnf remove @xfce-media @input-methods @guest-desktop-agents @dial-up @desktop-accessibility @multimedia -y
+sudo dnf remove @xfce-apps -yx ristretto,atril,mousepad,xarchiver,seahorse
+
+sudo dnf remove irqbalance localsearch nano abrt rsyslog dnfdragora-updater nfs-utils pragha xfce4-screensaver xfce4-taskmanager -y
+
+# Uncomment to remove printing deps
+# sudo dnf remove @printing cups system-config-printer-libs
 
 # comment if using laptop
-sudo dnf remove @networkmanager-submodules blueman bluez-libs xfce4-screensaver -y
+sudo dnf remove @networkmanager-submodules blueman bluez-libs -y
+sudo dnf install tlp -y && sudo systemctl enable --now tlp
 
 # enable rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
-# non-free drivers
-sudo dnf install ffmpeg --allowerasing -y
-sudo dnf install mesa-va-drivers-freeworld -y
+# replace X11
+sudo dnf copr enable @xlibre/xlibre-xserver
+sudo dnf install xlibre-xserver xlibre-xf86-input-libinput xlibre-xserver-common xlibre-xserver-Xorg --allowerasing
 
-# general apps
-sudo dnf install fuse fuse-libs qbittorrent ristretto atril mousepad xarchiver seahorse -y
+# non-free packages
+sudo dnf install ffmpeg mesa-va-drivers-freeworld --allowerasing -y
 
-# ufw
-sudo dnf swap -y --allowerasing firewalld ufw
-sudo ufw default deny incoming && sudo ufw default allow outgoing
-sudo ufw enable
-sudo systemctl enable ufw
+# prerequisites
+sudo dnf install fuse fuse-libs qbittorrent unrar @xfce-office -y
+sudo dnf install mpv audacious --setopt=install_weak_deps=False -y
 
 # brave
 sudo dnf install dnf-plugins-core -y

@@ -1,13 +1,14 @@
 #!/bin/bash
-# audio player
-sudo dnf install audacious --setopt=install_weak_deps=False -y
-
-# media player (video & audio)
-sudo dnf install mpv --setopt=install_weak_deps=False -y
-
 # librewolf
 # sudo dnf config-manager addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
 # sudo dnf install librewolf -y
+
+# ufw
+# Warning: When using virtualization, network won't work without firewalld
+# sudo dnf swap -y --allowerasing firewalld ufw
+# sudo ufw default deny incoming && sudo ufw default allow outgoing
+# sudo ufw enable
+# sudo systemctl enable ufw
 
 # obs studio
 # sudo dnf install flatpak -y
