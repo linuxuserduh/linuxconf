@@ -10,7 +10,6 @@ sudo dnf remove irqbalance localsearch nano abrt rsyslog dnfdragora-updater nfs-
 
 # comment if using laptop
 sudo dnf remove @networkmanager-submodules blueman bluez-libs -y
-sudo dnf install tlp -y && sudo systemctl enable --now tlp
 
 # enable rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y

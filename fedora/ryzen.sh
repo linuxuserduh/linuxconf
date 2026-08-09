@@ -15,7 +15,7 @@ cd ryzen_smu/ && sudo make dkms-install
 
 # set custom configs on boot
 echo -e '#!/bin/bash
-ryzenadj -a 35000 -b 48000 -c 35000 -f 73
+ryzenadj -a 45000 -b 61000 -c 45000 -f 75 -g 45000 -k 65000
 echo 0 | tee /sys/devices/system/cpu/cpufreq/boost' | sudo tee /usr/local/sbin/ryzenconfig.sh > /dev/null
 sudo chmod 0700 /usr/local/sbin/ryzenconfig.sh
 

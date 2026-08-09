@@ -1,4 +1,7 @@
 #!/bin/bash
+# gimp
+sudo dnf install gimp -y
+
 # librewolf
 # sudo dnf config-manager addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
 # sudo dnf install librewolf -y
