@@ -2,6 +2,9 @@
 # gimp
 sudo dnf install gimp -y
 
+# Virtualization
+# sudo dnf install @virtualization -y
+
 # librewolf
 # sudo dnf config-manager addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
 # sudo dnf install librewolf -y

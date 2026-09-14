@@ -25,10 +25,6 @@ ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", \
 echo -e 'ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sda", RUN+="/usr/bin/hdparm -B 254 -S 0 /dev/sda"' | sudo tee /etc/udev/rules.d/69-hdparm.rules > /dev/null
 
 
-# ZRAM Rules
-echo -e 'ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150"' | sudo tee /etc/udev/rules.d/30-zram.rules > /dev/null
-
-
 # Sysctl config from CachyOS settings github
 echo -e '# This action will speed up your boot and shutdown, because one less module is loaded. Additionally disabling watchdog timers increases performance and lowers power consumption
 # Disable NMI watchdog
@@ -71,3 +67,12 @@ vm.dirty_background_bytes = 67108864
 # tunable expresses the interval between those wakeups, in 100ths of a second (Default is 500).
 vm.dirty_writeback_centisecs = 1500' | sudo tee /etc/sysctl.d/70-iomem-management.conf > /dev/null
 sudo sysctl -p /etc/sysctl.d/70-iomem-management.conf
+
+
+echo -e '# Increase netdev receive queue (Default is 1000)
+# May help prevent losing packets
+net.core.netdev_max_backlog = 4096
+
+# Set size of file handles and inode cache (Default is 9223372036854775807)
+fs.file-max = 2097152' | sudo tee /etc/sysctl.d/50-network.conf > /dev/null
+sudo sysctl -p /etc/sysctl.d/50-network.conf

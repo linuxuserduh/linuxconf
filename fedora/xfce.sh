@@ -17,7 +17,7 @@ sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
 # replace X11
 sudo dnf copr enable @xlibre/xlibre-xserver
-sudo dnf install xlibre-xserver xlibre-xf86-input-libinput xlibre-xserver-common xlibre-xserver-Xorg --allowerasing
+sudo dnf install xlibre-xserver xlibre-xf86-input-libinput --allowerasing
 
 # non-free packages
 sudo dnf install ffmpeg mesa-va-drivers-freeworld --allowerasing -y
