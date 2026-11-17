@@ -19,11 +19,11 @@ sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 sudo dnf copr enable @xlibre/xlibre-xserver
 sudo dnf install xlibre-xserver xlibre-xf86-input-libinput --allowerasing
 
-# non-free packages
-sudo dnf install ffmpeg mesa-va-drivers-freeworld --allowerasing -y
+# ffmpeg
+sudo dnf install ffmpeg --allowerasing -y
 
 # prerequisites
-sudo dnf install fuse fuse-libs qbittorrent unrar @xfce-office -y
+sudo dnf install fuse fuse-libs kernel-tools qbittorrent unrar @xfce-office -y
 sudo dnf install mpv audacious --setopt=install_weak_deps=False -y
 
 # brave

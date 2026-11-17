@@ -1,4 +1,7 @@
 #!/bin/bash
+# non-free drivers
+sudo dnf install mesa-va-drivers-freeworld --allowerasing -y
+
 # ryzenadj
 sudo dnf -y install cmake gcc-c++ pciutils-devel
 git clone https://github.com/FlyGoat/RyzenAdj
